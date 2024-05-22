@@ -7,10 +7,10 @@ param (
     $PfxExportPath
 )
 
-    $password = ConvertTo-SecureString -String $Pass -Force -AsPlainText
+$password = ConvertTo-SecureString -String $Pass -Force -AsPlainText
 
-    $loadCer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
-    $loadCer.Import($CerImportPath)
-    $CerExport = $loadCer.Export("Pfx",$password)
+$loadCer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+$loadCer.Import($CerImportPath)
+$CerExport = $loadCer.Export("Pfx",$password)
 
-    [System.IO.File]::WriteAllBytes($PfxExportPath, $CerExport)
+[System.IO.File]::WriteAllBytes($PfxExportPath, $CerExport)
